@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,14 +36,9 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uname=request.getParameter("uname");
 		String password=request.getParameter("password");
-		String email=request.getParameter("email");
-		String phone=request.getParameter("phone");
-		String firstName=request.getParameter("firstName");
-		String lastName=request.getParameter("lastName");
-		String details=request.getParameter("details");
-		Admin admin=new Admin(uname, password, email, phone, firstName, lastName, details);
-		RegisterDao rdao=new RegisterDao();
-		String result=rdao.insert(admin);
+		Auth auth = new Auth(uname,password);
+		LoginDao ldao = new LoginDao();
+		boolean result = ldao.validate(auth);
 		response.getWriter().println(result);
 	}
 

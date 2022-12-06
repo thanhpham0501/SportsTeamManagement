@@ -1,9 +1,12 @@
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
-public class RegisterDao {
+public class LoginDao {
 	private String dburl = "jdbc:mysql://localhost:3306/SportsTeam";
 	private String dbuname = "root";
 	private String dbpassword = "";
@@ -28,28 +31,27 @@ public class RegisterDao {
 		}
 		return con;
 	}
-
-	public String insert(Admin admin) {
+	
+	public boolean validate(Auth login) {
+		boolean status = false;
+		
 		loadDriver(dbdriver);
 		Connection con = getConnection();
-		String sql = "insert into Admins (Username, Pass, Email, AdminContactInfo, AdminFirstName, AdminLastName, AdminDetails) values(?,?,?,?,?,?,?)";
-		String result="Data Entered Successfully";
+		String sql = "select * from Admins where Username = ? and Pass = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, admin.getUname());
-			ps.setString(2, admin.getPassword());
-			ps.setString(3, admin.getEmail());
-			ps.setString(4, admin.getPhone());
-			ps.setString(5, admin.getFirstName());
-			ps.setString(6, admin.getLastName());
-			ps.setString(7, admin.getDetails());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			result="Data Not Entered Successfully";
+			ps.setString(1, login.getUserName());
+			ps.setString(2, login.getPassword());
+			
+			ResultSet rs = ps.executeQuery();
+			status = rs.next();
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
-
+		return status;
 	}
+
+	
+
+	
 }
