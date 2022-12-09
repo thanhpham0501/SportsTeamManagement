@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
 
 /**
  * Servlet implementation class Register
@@ -39,7 +41,15 @@ public class Login extends HttpServlet {
 		Auth auth = new Auth(uname,password);
 		LoginDao ldao = new LoginDao();
 		boolean result = ldao.validate(auth);
-		response.getWriter().println(result);
+		//response.getWriter().println(result);
+		
+		//Add an IF check to see if result is true, dont login if false
+		HttpSession sess = request.getSession();
+		sess.setAttribute("loginStatus",result);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("LoginSuccess.jsp");
+		rd.forward(request,response);
+		
 	}
 
 }
