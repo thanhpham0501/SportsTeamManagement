@@ -42,6 +42,7 @@
 		<td><b>LastName</b></td>
 		<td><b>Player Position</b></td>
 		<td><b>Dominant Hand</b></td>
+		<td><b>Health Status</b></td>
 		<td><b>Date Of Birth</b></td>
 		<td><b>ContactInfo</b></td>
 		<td><b>Sponsor Name</b></td>
@@ -63,6 +64,7 @@
 			<td><%=resultSet.getString("LastName") %></td>
 			<td><%=resultSet.getString("PlayerPosition") %></td>
 			<td><%=resultSet.getString("DominantHand") %></td>
+			<td><%=resultSet.getString("PlayerHealth") %></td>
 			<td><%=resultSet.getString("DOB") %></td>
 			<td><%=resultSet.getString("ContactInfo") %></td>
 			<td><%=resultSet.getString("SponsorName") %></td>

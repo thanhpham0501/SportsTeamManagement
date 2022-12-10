@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Stat")
-public class Statistic extends HttpServlet {
+@WebServlet("/Event")
+public class Event extends HttpServlet {
 	private String dburl = "jdbc:mysql://localhost:3306/SportsTeam";
 	private String dbuname = "root";
 	private String dbpassword = "";
@@ -48,7 +48,7 @@ public class Statistic extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Statistic() {
+    public Event() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -65,11 +65,11 @@ public class Statistic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Statid=request.getParameter("statID");
-		String statistic=request.getParameter("statistic");
-		String statType=request.getParameter("statType");
-		String player=request.getParameter("player");
-		String season=request.getParameter("season");
+		String eventID=request.getParameter("eventID");
+		String eventTitle=request.getParameter("eventTitle");
+		String eventType=request.getParameter("eventType");
+		String eventDetails=request.getParameter("eventDetails");
+		String eventDate=request.getParameter("eventDate");
 		String option=request.getParameter("option");
 		loadDriver(dbdriver);
 		Connection con = getConnection();
@@ -78,28 +78,28 @@ public class Statistic extends HttpServlet {
 		
 		try {
 			if (option.equals("Add")) { //Insert
-				String sql = "insert into ClubStats (Statistic, StatType, Player, Season) values (?,?,?,?);";
+				String sql = "insert into Events (EventsTitle, EventsType, EventsDetails, EventsDate) values (?,?,?,?);";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, statistic);
-				ps.setString(2, statType);
-				ps.setString(3, player);
-				ps.setString(4, season);
+				ps.setString(1, eventTitle);
+				ps.setString(2, eventType);
+				ps.setString(3, eventDetails);
+				ps.setString(4, eventDate);
 				ps.executeUpdate();
 			}
 			 if(option.equals("Delete")) { // Delete
-				String sql = "delete from ClubStats where StatID = ?;";
+				String sql = "delete from Events where EventsID = ?;";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, Statid);
+				ps.setString(1, eventID);
 				ps.executeUpdate();
 			}
 			 if(option.equals("Edit")){ //Update
-				String sql = "update ClubStats set Statistic = ?, StatType = ?, Player = ?, Season = ? Where StatID = ?;";
+				String sql = "update Events set EventsTitle = ?, EventsType = ?, EventsDetails = ?, EventsDate = ? Where EventsID = ?;";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, statistic);
-				ps.setString(2, statType);
-				ps.setString(3, player);
-				ps.setString(4, season);
-				ps.setString(5, Statid);
+				ps.setString(1, eventTitle);
+				ps.setString(2, eventType);
+				ps.setString(3, eventDetails);
+				ps.setString(4, eventDate);
+				ps.setString(5, eventID);
 				ps.executeUpdate();
 			}
 		}catch (SQLException e) {
@@ -111,6 +111,7 @@ public class Statistic extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("LoginSuccess.jsp");
 		rd.forward(request,response);
+
 	}
 
 }

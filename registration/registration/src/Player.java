@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/Stat")
-public class Statistic extends HttpServlet {
+@WebServlet("/Player")
+public class Player extends HttpServlet {
 	private String dburl = "jdbc:mysql://localhost:3306/SportsTeam";
 	private String dbuname = "root";
 	private String dbpassword = "";
@@ -48,7 +48,7 @@ public class Statistic extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Statistic() {
+    public Player() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -65,11 +65,16 @@ public class Statistic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Statid=request.getParameter("statID");
-		String statistic=request.getParameter("statistic");
-		String statType=request.getParameter("statType");
-		String player=request.getParameter("player");
-		String season=request.getParameter("season");
+		String playerID=request.getParameter("playerID");
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String playerPos=request.getParameter("playerPos");
+		String playerHand=request.getParameter("playerHand");
+		String playerHealth=request.getParameter("playerHealth");
+		String playerDOB=request.getParameter("playerDOB");
+		String playerContact=request.getParameter("playerContact");
+		String playerSponsor=request.getParameter("playerSponsor");
+		String playerStats=request.getParameter("playerStats");
 		String option=request.getParameter("option");
 		loadDriver(dbdriver);
 		Connection con = getConnection();
@@ -78,28 +83,38 @@ public class Statistic extends HttpServlet {
 		
 		try {
 			if (option.equals("Add")) { //Insert
-				String sql = "insert into ClubStats (Statistic, StatType, Player, Season) values (?,?,?,?);";
+				String sql = "insert into Players (FirstName, LastName, PlayerPosition, DominantHand, PlayerHealth, DOB, ContactInfo, SponsorName, PlayerStats) values (?,?,?,?,?,?,?,?,?);";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, statistic);
-				ps.setString(2, statType);
-				ps.setString(3, player);
-				ps.setString(4, season);
+				ps.setString(1, firstName);
+				ps.setString(2, lastName);
+				ps.setString(3, playerPos);
+				ps.setString(4, playerHand);
+				ps.setString(5, playerHealth);
+				ps.setString(6, playerDOB);
+				ps.setString(7, playerContact);
+				ps.setString(8, playerSponsor);
+				ps.setString(9, playerStats);
 				ps.executeUpdate();
 			}
 			 if(option.equals("Delete")) { // Delete
-				String sql = "delete from ClubStats where StatID = ?;";
+				String sql = "delete from Players where PlayerID = ?;";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, Statid);
+				ps.setString(1, playerID);
 				ps.executeUpdate();
 			}
 			 if(option.equals("Edit")){ //Update
-				String sql = "update ClubStats set Statistic = ?, StatType = ?, Player = ?, Season = ? Where StatID = ?;";
+				String sql = "update Players set FirstName = ?, LastName = ?, PlayerPosition = ?, DominantHand = ?, PlayerHealth = ?, DOB = ?, ContactInfo = ?, SponsorName = ?, PlayerStats = ? Where PlayerID = ?;";
 				ps = con.prepareStatement(sql);
-				ps.setString(1, statistic);
-				ps.setString(2, statType);
-				ps.setString(3, player);
-				ps.setString(4, season);
-				ps.setString(5, Statid);
+				ps.setString(1, firstName);
+				ps.setString(2, lastName);
+				ps.setString(3, playerPos);
+				ps.setString(4, playerHand);
+				ps.setString(5, playerHealth);
+				ps.setString(6, playerDOB);
+				ps.setString(7, playerContact);
+				ps.setString(8, playerSponsor);
+				ps.setString(9, playerStats);
+				ps.setString(10, playerID);
 				ps.executeUpdate();
 			}
 		}catch (SQLException e) {
