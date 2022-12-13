@@ -33,6 +33,7 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//Check for null
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uname=request.getParameter("uname");
 		String password=request.getParameter("password");
@@ -41,10 +42,16 @@ public class Register extends HttpServlet {
 		String firstName=request.getParameter("firstName");
 		String lastName=request.getParameter("lastName");
 		String details=request.getParameter("details");
-		Admin admin=new Admin(uname, password, email, phone, firstName, lastName, details);
-		RegisterDao rdao=new RegisterDao();
-		String result=rdao.insert(admin);
-		response.getWriter().println(result);
+		String adminCode=request.getParameter("adminCode");
+		if(adminCode.equals(adminCode)) {
+			Admin admin=new Admin(uname, password, email, phone, firstName, lastName, details);
+			RegisterDao rdao=new RegisterDao();
+			String result=rdao.insert(admin);
+			response.getWriter().println(result);
+		}
+		else {	
+			response.getWriter().println("Not Registered: Missing fields");
+		}
 	}
 
 }

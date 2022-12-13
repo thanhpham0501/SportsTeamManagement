@@ -44,6 +44,7 @@ if (loginStat){
 %>
 
 <h1><%= LoginStatus %></h1>
+<h2 align="center"><font><strong>Club Statistics</strong></font></h2>
 <table align="center" cellpadding="5" cellspacing="1" border="">
 <tr>
 

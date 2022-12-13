@@ -1,7 +1,8 @@
 /* @extend display-flex; */
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
   display: flex;
-  display: -webkit-flex; }
+  display: -webkit-flex; 
+  justify-content: center;}
 
 /* @extend list-type-ulli; */
 list-type-ulli, .socials {
@@ -201,7 +202,7 @@ body {
   font-family: Poppins; }
 
 .container {
-  width: 900px;
+  width: 100%;
   background: #fff;
   margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -213,7 +214,8 @@ body {
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   -o-border-radius: 20px;
-  -ms-border-radius: 20px; }
+  -ms-border-radius: 20px; 
+  padding-bottom: 30px;}
 
 .display-flex {
   justify-content: space-between;
@@ -451,8 +453,8 @@ label.valid {
   font-size: 18px; }
 
 .signin-content {
-  padding-top: 67px;
-  padding-bottom: 87px; }
+  padding-top: 10px;
+  padding-bottom: 60px; }
 
 .social-login {
   align-items: center;
@@ -515,13 +517,13 @@ label.valid {
   margin-right: 20px;
   margin-top: 10px; }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
   .container {
     width: calc( 100% - 30px);
     max-width: 100%; } }
 @media screen and (min-width: 1024px) {
   .container {
-    max-width: 1200px; } }
+    max-width: 1500px; } }
 @media screen and (max-width: 768px) {
   .signup-content, .signin-content {
     flex-direction: column;
