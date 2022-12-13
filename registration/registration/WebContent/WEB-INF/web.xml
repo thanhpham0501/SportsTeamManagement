@@ -1,0 +1,75 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+id="WebApp_ID" version="3.0">
+    
+ <welcome-file-list>
+ <welcome-file>WelcomePage.jsp</welcome-file>
+ </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>Homebutton</servlet-name>
+        <jsp-file>/WelcomePage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Homebutton</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+   
+    <servlet>
+        <servlet-name>Eventbutton</servlet-name>
+        <jsp-file>/Events_fetch.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Eventbutton</servlet-name>
+        <url-pattern>/events</url-pattern>
+    </servlet-mapping>
+ 
+    <servlet>
+        <servlet-name>PlayerButton</servlet-name>
+        <jsp-file>/Players_fetch.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlayerButton</servlet-name>
+        <url-pattern>/players</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>StatsButton</servlet-name>
+        <jsp-file>/ClubStats_fetch.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StatsButton</servlet-name>
+        <url-pattern>/stat</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LoginButton</servlet-name>
+        <jsp-file>/AdminLogin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginButton</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegisterButton</servlet-name>
+        <jsp-file>/Register.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterButton</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    
+    <!--
+    <servlet>
+        <servlet-name>LoginActButton</servlet-name>
+        <servlet-class>com.mycompany.webintro.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginActButton</servlet-name>
+        <url-pattern>/loginAction</url-pattern>
+    </servlet-mapping>
+    -->
+</web-app>
