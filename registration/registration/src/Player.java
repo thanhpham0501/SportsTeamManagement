@@ -78,12 +78,12 @@ public class Player extends HttpServlet {
 		String option=request.getParameter("option");
 		loadDriver(dbdriver);
 		Connection con = getConnection();
-		PreparedStatement ps;
-		
+		PreparedStatement ps;	
 		
 		try {
 			if (option.equals("Add")) { //Insert
-				String sql = "insert into Players (FirstName, LastName, PlayerPosition, DominantHand, PlayerHealth, DOB, ContactInfo, SponsorName, PlayerStats) values (?,?,?,?,?,?,?,?,?);";
+				String sql = "insert into Players (FirstName, LastName, PlayerPosition, DominantHand, PlayerHealth, "
+						+ "DOB, ContactInfo, SponsorName, PlayerStats) values (?,?,?,?,?,?,?,?,?);";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, firstName);
 				ps.setString(2, lastName);
@@ -103,7 +103,8 @@ public class Player extends HttpServlet {
 				ps.executeUpdate();
 			}
 			 if(option.equals("Edit")){ //Update
-				String sql = "update Players set FirstName = ?, LastName = ?, PlayerPosition = ?, DominantHand = ?, PlayerHealth = ?, DOB = ?, ContactInfo = ?, SponsorName = ?, PlayerStats = ? Where PlayerID = ?;";
+				String sql = "update Players set FirstName = ?, LastName = ?, PlayerPosition = ?, DominantHand = ?,"
+						+ " PlayerHealth = ?, DOB = ?, ContactInfo = ?, SponsorName = ?, PlayerStats = ? Where PlayerID = ?;";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, firstName);
 				ps.setString(2, lastName);
@@ -122,8 +123,6 @@ public class Player extends HttpServlet {
 			//result="Data Not Entered Successfully";
 			e.printStackTrace();
 		}
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("LoginSuccess.jsp");
 		rd.forward(request,response);
 	}

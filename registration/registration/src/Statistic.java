@@ -107,8 +107,6 @@ public class Statistic extends HttpServlet {
 			//result="Data Not Entered Successfully";
 			e.printStackTrace();
 		}
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("LoginSuccess.jsp");
 		rd.forward(request,response);
 	}

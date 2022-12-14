@@ -32,7 +32,8 @@ public class RegisterDao {
 	public String insert(Admin admin) {
 		loadDriver(dbdriver);
 		Connection con = getConnection();
-		String sql = "insert into Admins (Username, Pass, Email, AdminContactInfo, AdminFirstName, AdminLastName, AdminDetails) values(?,?,?,?,?,?,?)";
+		String sql = "insert into Admins (Username, Pass, Email, AdminContactInfo, "
+				+ "AdminFirstName, AdminLastName, AdminDetails) values(?,?,?,?,?,?,?)";
 		String result="Data Entered Successfully";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);

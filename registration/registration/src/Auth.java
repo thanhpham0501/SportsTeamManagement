@@ -29,3 +29,4 @@ public class Auth {
 		this.password = Password;
 	}
 }
+

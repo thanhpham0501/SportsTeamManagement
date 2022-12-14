@@ -49,9 +49,5 @@ public class LoginDao {
 			e.printStackTrace();
 		}
 		return status;
-	}
-
-	
-
-	
+	}	
 }

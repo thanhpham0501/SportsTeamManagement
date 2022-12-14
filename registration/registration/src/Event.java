@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,7 +73,6 @@ public class Event extends HttpServlet {
 		Connection con = getConnection();
 		PreparedStatement ps;
 		
-		
 		try {
 			if (option.equals("Add")) { //Insert
 				String sql = "insert into Events (EventsTitle, EventsType, EventsDetails, EventsDate) values (?,?,?,?);";
@@ -107,11 +104,7 @@ public class Event extends HttpServlet {
 			//result="Data Not Entered Successfully";
 			e.printStackTrace();
 		}
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("LoginSuccess.jsp");
 		rd.forward(request,response);
-
 	}
-
 }

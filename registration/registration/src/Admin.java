@@ -1,4 +1,3 @@
-
 public class Admin 
 {
 	private String uname,password,email,phone,firstName,lastName,details;
